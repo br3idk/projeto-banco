@@ -12,7 +12,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public TelaLogin() {
         initComponents();
-        setTitle("Login do sistema");
+        setTitle("Login do sistema"); 
         setResizable(false);
         setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("\\Imagens\\login-icon.png")));
@@ -240,7 +240,7 @@ public class TelaLogin extends javax.swing.JFrame {
        if (usuario.equals(superAdm) && senha.equals(superSenha)) {
            
            JOptionPane.showMessageDialog(null, "Permissão concedida", "SUCESSO!", JOptionPane.INFORMATION_MESSAGE);
-           System.out.println("Deu bom"); //nao ta dando bom
+           System.out.println("Deu bom");
            
         } else if(usuario.isEmpty() || senha.isEmpty()) {
             
