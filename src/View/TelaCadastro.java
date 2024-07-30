@@ -1,6 +1,11 @@
 package View;
 
+import Model.Pessoa;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class TelaCadastro extends javax.swing.JFrame {
@@ -81,6 +86,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
         txtData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDataActionPerformed(evt);
@@ -171,9 +177,24 @@ public class TelaCadastro extends javax.swing.JFrame {
         String nome = txtNome.getText();
         String CPF = txtCPF.getText();
         String data = txtData.getText();
+        String aniversario = txtData.getText();
         
         if (nome.isEmpty() || CPF.isEmpty() || data.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campos não preenchidos totalmente", "FALTAM DADOS!", JOptionPane.WARNING_MESSAGE);
+        } else if (true) {
+            
+            try {
+                Pessoa P = new Pessoa(nome, CPF, aniversario);
+                JOptionPane.showMessageDialog(null, "Nome: " + P.getNome() + "\nCPF: " + P.getCPF() + "\nData de nascimento: " + P.getAniversario() + "\nIdade: " + P.getIdade(), "CADASTRADO COM SUCESSO!", JOptionPane.INFORMATION_MESSAGE);
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        } else { //Caso CPF seja inválido
+            
+            JOptionPane.showMessageDialog(null, "CPF não coincide", "CPF INVÁLIDO!", JOptionPane.ERROR_MESSAGE);
+            
         }
         
         //debug

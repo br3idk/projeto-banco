@@ -230,17 +230,16 @@ public class TelaLogin extends javax.swing.JFrame {
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
 
     }//GEN-LAST:event_txtSenhaActionPerformed
-
-
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-      
+    private void Logar() {
+              
         String usuario = txtUsuario.getText();
         String senha = txtSenha.getText();
         
        if (usuario.equals(superAdm) && senha.equals(superSenha)) {
            
            JOptionPane.showMessageDialog(null, "Permissão concedida", "SUCESSO!", JOptionPane.INFORMATION_MESSAGE);
-           System.out.println("Deu bom");
+           new TelaCadastro().setVisible(true);
+           //new TelaLogin().dispose();
            
         } else if(usuario.isEmpty() || senha.isEmpty()) {
             
@@ -254,14 +253,14 @@ public class TelaLogin extends javax.swing.JFrame {
         
         System.out.println(txtUsuario.getText());
         System.out.println(txtSenha.getText());
+    }
 
-        
-        
-
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        Logar();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
-        //Logar();
+        Logar();
     }//GEN-LAST:event_btnLoginKeyPressed
 
     private void lblAjudaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAjudaMouseEntered
