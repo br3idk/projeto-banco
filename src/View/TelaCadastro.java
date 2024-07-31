@@ -32,7 +32,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         imgPainel = new javax.swing.JPanel();
         btnImagem = new javax.swing.JToggleButton();
-        txtData = new javax.swing.JFormattedTextField();
+        txtData = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,13 +86,6 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        txtData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDataActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,8 +111,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtData)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(imgPainel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -169,10 +162,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         txtData.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void txtDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDataActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String nome = txtNome.getText();
         String CPF = txtCPF.getText();
@@ -186,6 +175,12 @@ public class TelaCadastro extends javax.swing.JFrame {
             try {
                 Pessoa P = new Pessoa(nome, CPF, aniversario);
                 JOptionPane.showMessageDialog(null, "Nome: " + P.getNome() + "\nCPF: " + P.getCPF() + "\nData de nascimento: " + P.getAniversario() + "\nIdade: " + P.getIdade(), "CADASTRADO COM SUCESSO!", JOptionPane.INFORMATION_MESSAGE);
+                        //debug
+                System.out.println(txtNome.getText());
+                System.out.println(txtCPF.getText());
+                System.out.println(txtData.getText());
+                System.out.println("P.getIdade: " + P.getIdade());
+                System.out.println("P.getAniversario: " + P.getAniversario());
                 
             } catch (ParseException ex) {
                 Logger.getLogger(TelaCadastro.class.getName()).log(Level.SEVERE, null, ex);
@@ -196,11 +191,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "CPF não coincide", "CPF INVÁLIDO!", JOptionPane.ERROR_MESSAGE);
             
         }
-        
-        //debug
-        System.out.println(txtNome.getText());
-        System.out.println(txtCPF.getText());
-        System.out.println(txtData.getText());
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     public static void main(String args[]) {
@@ -222,7 +212,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblNome;
     private javax.swing.JTextField txtCPF;
-    private javax.swing.JFormattedTextField txtData;
+    private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,8 +38,16 @@ public class Pessoa {
         this.CPF = CPF;
     }
     
-    public Date getAniversario() {
-        return aniversario;
+    public String getAniversario() {
+        
+        Calendar calendario = Calendar.getInstance();
+        calendario.setTime(this.aniversario);
+        
+        int diaAniversario = calendario.get(Calendar.DAY_OF_MONTH);
+        int mesAniversario = calendario.get(Calendar.MONTH) + 1;
+        int anoAniversario = calendario.get(Calendar.YEAR);
+        
+        return (diaAniversario + "/" + mesAniversario + "/" + anoAniversario);
 }
     public void setAniversario() {
         this.aniversario = aniversario;
@@ -48,10 +56,6 @@ public class Pessoa {
     public int getIdade() {
         return idade;
     }
-    
-    
-    DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-    JFormattedTextField txtData = new JFormattedTextField(format);
     
     private void TransformaData(String aniversario) throws ParseException {
         
@@ -64,12 +68,16 @@ public class Pessoa {
         
         Date hoje = new Date(); //Data atual
         Calendar calendario = Calendar.getInstance();
-        calendario.setTime(hoje);
         
         //Dados da data atual
+        
+        calendario.setTime(hoje);
         int diaHoje = calendario.get(Calendar.DAY_OF_MONTH);
         int mesHoje = calendario.get(Calendar.MONTH) + 1; //Porque ele conta janeiro como "0"
         int anoHoje = calendario.get(Calendar.YEAR);
+        
+        //Faz com que o dia, mes e ano do aniversario sejam extraídas da data de nascimento e não da data atual
+        calendario.setTime(this.aniversario);
         
         //Dados do aniversário
         int diaAniversario = calendario.get(Calendar.DAY_OF_MONTH);
@@ -78,10 +86,7 @@ public class Pessoa {
         
         this.idade = anoHoje - anoAniversario;
         
-        if (mesHoje < mesAniversario) {
-            this.idade--;
-            
-        } else if (mesHoje == mesAniversario && diaHoje < diaAniversario) {
+        if (mesHoje < mesAniversario || mesHoje == mesAniversario && diaHoje < diaAniversario) {
             this.idade--;
             
         } if (idade < 0) {
