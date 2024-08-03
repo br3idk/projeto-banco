@@ -1,6 +1,10 @@
 package View;
 
+import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
 import javax.swing.JOptionPane;
 
 public class TelaLogin extends javax.swing.JFrame {
@@ -61,6 +65,9 @@ public class TelaLogin extends javax.swing.JFrame {
         lblAjuda.setText("Ajuda? Contate o suporte");
         lblAjuda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblAjuda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAjudaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblAjudaMouseEntered(evt);
             }
@@ -254,7 +261,7 @@ public class TelaLogin extends javax.swing.JFrame {
         System.out.println(txtUsuario.getText());
         System.out.println(txtSenha.getText());
     }
-
+    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         Logar();
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -264,37 +271,24 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginKeyPressed
 
     private void lblAjudaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAjudaMouseEntered
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_lblAjudaMouseEntered
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void lblAjudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAjudaMouseClicked
+    lblAjuda.addMouseListener(new MouseAdapter() {
+           public void mouseClicked(MouseEvent e) {
+               try {
+                   URI uri = new URI("https://www.google.com/");
+                   Desktop.getDesktop().browse(uri);
+               } catch (Exception ex) {
+                   ex.printStackTrace();
+               }
+           } 
+        });
+    }//GEN-LAST:event_lblAjudaMouseClicked
 
-        /* Create and display the form */
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin().setVisible(true);
